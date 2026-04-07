@@ -281,15 +281,27 @@
       moveNo();
     }, { passive: false });
 
-  yesBtn.addEventListener('click', () => {
-  yesBtn.textContent = 'Это взаимно 💞';
+    yesBtn.addEventListener('click', async () => {
+      yesBtn.textContent = 'Это взаимно 💞';
+      yesBtn.classList.add('glow');
+      typeText(finalText);
+      burstHearts();
+      bigHeartRain();
 
-  setTimeout(() => {
-    loveAudio.currentTime = 41;
-    loveAudio.volume = 0.3;
-    loveAudio.play().catch(() => {});
-  }, 500);
-});
+      try {
+        loveAudio.volume = 0.2;
+        loveAudio.currentTime = 41;
+        await loveAudio.play();
+
+        const fade = setInterval(() => {
+          if (loveAudio.volume < 0.95) {
+            loveAudio.volume += 0.05;
+          } else {
+            clearInterval(fade);
+          }
+        }, 200);
+      } catch (e) {}
+    });
 
     function typeText(text) {
       message.innerHTML = '<span class="cursor">|</span>';
