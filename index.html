@@ -1,1 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Для Светы 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.35), transparent 35%),
+        linear-gradient(135deg, #ffd6e7 0%, #ffeaf2 45%, #fff7fb 100%);
+      position: relative;
+    }
+
+    .bg-hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-heart {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(255, 77, 148, 0.2);
+      animation: rise linear forwards;
+      user-select: none;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-120vh) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      width: min(92%, 620px);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 34px;
+      padding: 42px 26px 34px;
+      text-align: center;
+      box-shadow: 0 25px 80px rgba(255, 77, 148, 0.18);
+      position: relative;
+      z-index: 2;
+      animation: cardShow 0.9s ease;
+    }
+
+    @keyframes cardShow {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .top-text {
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ff6ea7;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.15;
+      color: #ff3f86;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      color: #555;
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 170px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      position: absolute;
+      border: none;
+      border-radius: 999px;
+      padding: 15px 34px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, left 0.15s ease, top 0.15s ease;
+      white-space: nowrap;
+    }
+
+    #yesBtn {
+      left: 24%;
+      top: 44px;
+      background: linear-gradient(135deg, #ff4d94, #ff6fa7);
+      color: white;
+      box-shadow: 0 12px 30px rgba(255, 77, 148, 0.35);
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 16px 35px rgba(255, 77, 148, 0.45);
+    }
+
+    #noBtn {
+      left: 56%;
+      top: 44px;
+      background: #f4f4f6;
+      color: #444;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .message-box {
+      margin-top: 18px;
+      min-height: 155px;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255, 243, 248, 0.85);
+      border: 1px solid rgba(255, 160, 196, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .message {
+      font-size: 21px;
+      line-height: 1.6;
+      color: #ff3f86;
+      font-weight: 700;
+      white-space: pre-line;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .final-note {
+      margin-top: 16px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .burst-heart {
+      position: fixed;
+      font-size: 24px;
+      animation: burstUp 3s linear forwards;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    @keyframes burstUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-220px) scale(1.9);
+        opacity: 0;
+      }
+    }
+
+    .glow {
+      animation: glowPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 0 rgba(255,77,148,0); }
+      50% { box-shadow: 0 0 35px rgba(255,77,148,0.35); }
+    }
+
+    @media (max-width: 560px) {
+      .card {
+        padding: 34px 18px 26px;
+      }
+
+      .buttons {
+        height: 190px;
+      }
+
+      #yesBtn {
+        left: 14%;
+      }
+
+      #noBtn {
+        left: 56%;
+      }
+
+      .message {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-hearts" id="bgHearts"></div>
+
+  <div class="card" id="card">
+    <div class="top-text">Только для Светы 💌</div>
+    <h1>Света, ты любишь меня? 💖</h1>
+    <div class="subtitle">
+      У тебя, конечно, есть выбор...<br>
+      но один вариант тут явно счастливее другого 😌
+    </div>
+
+    <div class="buttons" id="area">
+      <button id="yesBtn">Да, конечно 💘</button>
+      <button id="noBtn">Нет</button>
+    </div>
+
+    <div class="message-box">
+      <div class="message" id="message">Нажми на правильный вариант ✨</div>
+    </div>
+
+    <div class="final-note">Иногда сердце знает ответ быстрее, чем кнопки 💗</div>
+
+    <audio id="loveAudio" preload="auto">
+      <source src="music/song.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const area = document.getElementById('area');
+    const message = document.getElementById('message');
+    const bgHearts = document.getElementById('bgHearts');
+    const loveAudio = document.getElementById('loveAudio');
+
+    const finalText = `Я так и знал... 💘\n\nТы не просто особенная.\nТы та, о ком хочется думать чаще,\nкому хочется дарить улыбку, тепло\nи делать этот мир красивее.\n\nЯ очень рад, что ты есть.\nТы правда очень ценная для меня 💖`;
+
+    function moveNo() {
+      const maxX = area.clientWidth - noBtn.offsetWidth;
+      const maxY = area.clientHeight - noBtn.offsetHeight;
+
+      const x = Math.max(0, Math.random() * maxX);
+      const y = Math.max(0, Math.random() * maxY);
+
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    }
+
+    noBtn.addEventListener('mouseenter', moveNo);
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveNo();
+    }, { passive: false });
+
+    yesBtn.addEventListener('click', async () => {
+      yesBtn.textContent = 'Это взаимно 💞';
+      yesBtn.classList.add('glow');
+      typeText(finalText);
+      burstHearts();
+      bigHeartRain();
+
+      try {
+        loveAudio.volume = 0.2;
+        loveAudio.currentTime = 41;
+        await loveAudio.play();
+
+        const fade = setInterval(() => {
+          if (loveAudio.volume < 0.95) {
+            loveAudio.volume += 0.05;
+          } else {
+            clearInterval(fade);
+          }
+        }, 200);
+      } catch (e) {}
+    });
+
+    function typeText(text) {
+      message.innerHTML = '<span class="cursor">|</span>';
+      let i = 0;
+      const speed = 38;
+
+      const typing = setInterval(() => {
+        const visible = text.slice(0, i).replace(/\n/g, '<br>');
+        message.innerHTML = visible + '<span class="cursor">|</span>';
+        i++;
+
+        if (i > text.length) {
+          clearInterval(typing);
+          message.innerHTML = text.replace(/\n/g, '<br>');
+        }
+      }, speed);
+    }
+
+    function burstHearts() {
+      for (let i = 0; i < 28; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'burst-heart';
+        heart.textContent = ['💖', '💘', '💕', '💗'][Math.floor(Math.random() * 4)];
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = Math.random() * window.innerHeight + 'px';
+        heart.style.animationDelay = (Math.random() * 0.7) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3200);
+      }
+    }
+
+    function createBackgroundHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'bg-heart';
+      heart.textContent = ['❤', '💗', '💖', '💕'][Math.floor(Math.random() * 4)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (16 + Math.random() * 24) + 'px';
+      heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+      bgHearts.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 12000);
+    }
+
+    function bigHeartRain() {
+      let count = 0;
+      const rain = setInterval(() => {
+        burstHearts();
+        count++;
+        if (count >= 3) clearInterval(rain);
+      }, 900);
+    }
+
+    for (let i = 0; i < 16; i++) {
+      setTimeout(createBackgroundHeart, i * 300);
+    }
+    setInterval(createBackgroundHeart, 700);
+  </script>
+</body>
+</html>
